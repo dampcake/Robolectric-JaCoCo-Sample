@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply from: 'jacoco.gradle'
+apply from: "$rootDir/jacoco.gradle"
 
 android {
     compileSdkVersion 23
