@@ -2,7 +2,7 @@ apply plugin: 'jacoco'
 
 jacoco {
     // https://bintray.com/bintray/jcenter/org.jacoco:org.jacoco.core
-    toolVersion = "0.7.9"
+    toolVersion = "0.8.6" // 0.8.6 is sep 2020
 }
 
 android {
@@ -10,8 +10,17 @@ android {
         unitTests.all {
             jacoco {
                 includeNoLocationClasses = true
+                // from robeoelctric.org getting started; might make the original toast sample work
             }
         }
+        unitTests {
+            animationsDisabled = true
+            unitTests {
+                includeAndroidResources = true
+                returnDefaultValues = true
+            }
+        }
+
     }
 }
 
@@ -25,18 +34,26 @@ project.afterEvaluate {
             group = "Reporting"
             description = "Generate Jacoco coverage reports for the ${name.capitalize()} build."
 
-            classDirectories = fileTree(
-                    dir: "${project.buildDir}/intermediates/classes/${name}",
-                    excludes: ['**/R.class',
-                               '**/R$*.class',
-                               '**/*$ViewInjector*.*',
-                               '**/*$ViewBinder*.*',
-                               '**/BuildConfig.*',
-                               '**/Manifest*.*']
-            )
 
-            sourceDirectories = files(['src/main/java'].plus(android.sourceSets[name].java.srcDirs))
-            executionData = files("${project.buildDir}/jacoco/${testTaskName}.exec")
+                    getClassDirectories().setFrom(
+                            fileTree(
+                                    dir: "${project.buildDir}/intermediates/classes/${name}",
+                                    excludes: ['**/R.class',
+                                               '**/R$*.class',
+                                               '**/*$ViewInjector*.*',
+                                               '**/*$ViewBinder*.*',
+                                               '**/BuildConfig.*',
+                                               '**/Manifest*.*'])
+                    )
+
+
+// TODO: could try https://proandroiddev.com/how-i-resolved-jacoco-plugin-error-after-upgrading-gradle-to-6-1-1-d85c0086d66a
+
+
+            sourceDirectories.from = files(['src/main/java'].plus(android.sourceSets[name].java.srcDirs))
+
+           // executionData = files("${project.buildDir}/jacoco/${testTaskName}.exec")
+            executionData(files("${project.buildDir}/jacoco/${testTaskName}.exec"))
 
             reports {
                 xml.enabled = true

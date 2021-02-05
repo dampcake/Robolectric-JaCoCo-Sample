@@ -1,16 +1,16 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 apply from: "$rootDir/jacoco.gradle"
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.3"
+    compileSdkVersion 29
 
     defaultConfig {
         applicationId "com.dampcake.robotest"
-        minSdkVersion 16
-        targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 200
+        versionName "2.0"
     }
     buildTypes {
         debug {
@@ -24,7 +24,14 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    testCompile 'junit:junit:4.12'
-    testCompile 'org.robolectric:robolectric:3.3.2'
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.robolectric:robolectric:4.4'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    testImplementation "androidx.test.espresso:espresso-core:$espresso_version"
+    testImplementation "androidx.test:rules:$androidx_test_core_version"
+}
+repositories {
+    mavenCentral()
 }
