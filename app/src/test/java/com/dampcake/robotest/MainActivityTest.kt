@@ -41,4 +41,17 @@ class MainActivityTest {
         // of the gutter for hits=1 on the rest
         onView(withText("Tapped 1 time")).check(matches(isDisplayed()))
     }
+
+    // two tests so easier to experiment with
+    // replace active suites and uncovered code etc.
+    @Test
+    fun testTappedMoreThanOnce() {
+        onView(withId(R.id.textView)).check(matches(isDisplayed()))
+        onView(withId(R.id.button)).perform(click())
+        onView(withId(R.id.button)).perform(click())
+
+        // Note: before checking the new value there is an empty part
+        // of the gutter for hits=1 on the rest
+        onView(withText("tapped more than one time")).check(matches(isDisplayed()))
+    }
 }
