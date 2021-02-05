@@ -2,7 +2,7 @@ apply plugin: 'jacoco'
 
 jacoco {
     // https://bintray.com/bintray/jcenter/org.jacoco:org.jacoco.core
-    toolVersion = "0.7.9"
+    toolVersion = "0.8.6" // 0.8.6 is sep 2020
 }
 
 android {
@@ -10,8 +10,17 @@ android {
         unitTests.all {
             jacoco {
                 includeNoLocationClasses = true
+                // from robeoelctric.org getting started; might make the original toast sample work
             }
         }
+        unitTests {
+            animationsDisabled = true
+            unitTests {
+                includeAndroidResources = true
+                returnDefaultValues = true
+            }
+        }
+
     }
 }
 

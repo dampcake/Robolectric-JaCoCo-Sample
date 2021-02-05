@@ -1,15 +1,18 @@
 package com.dampcake.robotest
 
+import android.os.Build
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.Robolectric
-import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.robolectric.shadows.ShadowToast
+//import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.runner.AndroidJUnit4
 
-@RunWith(RobolectricTestRunner::class)
-@Config(constants = BuildConfig::class, sdk = [21])
+
+@Config(sdk = [Build.VERSION_CODES.P])
+@RunWith(AndroidJUnit4::class)
 class MainActivityTest {
     @Test
     fun testToastDisplayed() {
