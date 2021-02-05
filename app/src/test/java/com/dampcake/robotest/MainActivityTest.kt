@@ -1,22 +1,19 @@
-package com.dampcake.robotest;
+package com.dampcake.robotest
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.robolectric.Robolectric;
-import org.robolectric.RobolectricTestRunner;
-import org.robolectric.annotation.Config;
-import org.robolectric.shadows.ShadowToast;
+import org.junit.Assert
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.Robolectric
+import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
+import org.robolectric.shadows.ShadowToast
 
-import static org.junit.Assert.assertEquals;
-
-@RunWith(RobolectricTestRunner.class)
-@Config(constants = BuildConfig.class, sdk = 21)
-public class MainActivityTest {
-
+@RunWith(RobolectricTestRunner::class)
+@Config(constants = BuildConfig::class, sdk = [21])
+class MainActivityTest {
     @Test
-    public void testToastDisplayed() {
-        Robolectric.setupActivity(MainActivity.class);
-
-        assertEquals("Show Toast", ShadowToast.getTextOfLatestToast());
+    fun testToastDisplayed() {
+        Robolectric.setupActivity(MainActivity::class.java)
+        Assert.assertEquals("Show Toast", ShadowToast.getTextOfLatestToast())
     }
 }
