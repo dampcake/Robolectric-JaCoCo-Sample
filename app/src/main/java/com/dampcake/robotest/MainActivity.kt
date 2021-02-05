@@ -12,8 +12,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val textView : TextView = findViewById<TextView>(R.id.textView)
         val button : Button = findViewById(R.id.button)
+        var n = 1
         button.setOnClickListener {
-            textView.text = "Tapped!"
+            if (n==1) {
+                textView.text = "Tapped 1 time"
+            } else if (n>1) {
+                textView.text = "tapped more than one time"
+            }
+            n++
         }
     }
 }
