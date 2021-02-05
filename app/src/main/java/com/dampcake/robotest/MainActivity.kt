@@ -1,16 +1,17 @@
-package com.dampcake.robotest;
+package com.dampcake.robotest
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.widget.Toast;
+import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import android.widget.TextView
+import android.widget.Toast
 
-public class MainActivity extends AppCompatActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        Toast.makeText(this, "Show Toast", Toast.LENGTH_SHORT).show();
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        val textView : TextView = findViewById(R.id.textView) as TextView
+        findViewById(R.id.button).setOnClickListener {
+            textView.text = "Tapped!"
+        }
     }
 }
